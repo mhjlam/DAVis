@@ -9,7 +9,6 @@ Visualizer for data structures and algorithms in C.
 - List (single, double)
 - Queue (FIFO)
 - Stack (LIFO)
-
 - Map (hash table)
 - Set (red-black tree)
 - Heap (priority queue)
