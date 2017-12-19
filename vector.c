@@ -47,6 +47,7 @@ void vector_set(vector *v, int index, void *item)
 {
 	if (v == NULL) return;
 	if (index < 0) return;
+	if (v->size == 0) return;
 	if (index > v->size) return;
 
 	v->data[index] = item;
@@ -56,14 +57,16 @@ void *vector_get(vector *v, int index)
 {
 	if (v == NULL) return NULL;
 	if (index < 0) return NULL;
+	if (v->size == 0) return NULL;
 	if (index > v->size) return NULL;
 
-	return v->data[index];	
+	return v->data[index];
 }
 
 void vector_erase(vector *v, int index)
 {
 	if (index < 0) return;
+	if (v->size == 0) return;
 	if (index >= v->size) return;
 
 	// remove element

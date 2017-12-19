@@ -1,7 +1,35 @@
 #include <stdio.h>
+#include <stdint.h>
+#include <string.h>
+#include "tuple.h"
 #include "vector.h"
 
-int main(int argc, char *argv[])
+void tuple_test()
+{
+	printf("~~~ tuple ~~~\n");
+
+	uintptr_t a[] = { 1, 2, 3, 4 };
+
+	void* array[4];
+	memcpy(array, a, sizeof(void*) * 4);
+
+    tuple t;
+    tuple_init(&t, array, 4);
+
+    tuple_set(&t, 1, (void*)3);
+    tuple_erase(&t, 3);
+
+    for (int i = 0; i < t.size; i++)
+    {
+    	printf("%d ", (uintptr_t) tuple_get(&t, i));
+    }
+    printf("\n");
+
+    tuple_free(&t);
+    printf("\n");
+}
+
+void vector_test()
 {
 	printf("~~~ vector ~~~\n");
 
@@ -33,6 +61,13 @@ int main(int argc, char *argv[])
     printf("\n");
 
     vector_free(&v);
+    printf("\n");
+}
+
+int main(int argc, char *argv[])
+{
+	tuple_test();
+	//vector_test();
 
 	return 0;
 }
