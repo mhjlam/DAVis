@@ -3,62 +3,58 @@
 #include <stdlib.h>
 #include <string.h>
 
-void string_init(string *str, const char* data)
+void string_init(string *s, const char* data)
 {
-	if (str == NULL) return;
+	s->size = strlen(data);
+	s->data = (char*) malloc(s->size * sizeof(char));
 
-	str->size = strlen(data);
-	str->data = (char*) malloc(str->size * sizeof(char));
-
-	memcpy(str->data, data, str->size);
+	memcpy(s->data, data, s->size);
 }
 
-void string_init_clear(string *str)
+void string_init_clear(string *s)
 {
-	if (str == NULL) return;
-
-	str->size = 0;
-	str->data = (char*) calloc(1, sizeof(char));
-	str->data[0] = '\0';
+	s->size = 0;
+	s->data = (char*) calloc(1, sizeof(char));
+	s->data[0] = '\0';
 }
 
-void string_free(string *str)
+void string_free(string *s)
 {
-	free(str->data);
+	free(s->data);
 }
 
-char string_get(string *str, size_t index)
+char string_get(string *s, size_t index)
 {
-	if (str == NULL) return '\0';
-	if (index >= str->size) return '\0';
+	if (s == NULL) return '\0';
+	if (index >= s->size) return '\0';
 
-	return str->data[index];
+	return s->data[index];
 }
 
-void string_append(string *dst, const string *str)
+void string_append(string *dst, const string *s)
 {
 	size_t sz = dst->size;
-	dst->size += str->size;
+	dst->size += s->size;
 	dst->data = (char*) realloc(dst->data, dst->size * sizeof(char));
 
-	memcpy(dst->data + sz, str->data, str->size);
+	memcpy(dst->data + sz, s->data, s->size);
 }
 
-string*	string_concat(const string *str1, const string *str2)
+string*	string_concat(const string *s1, const string *s2)
 {
-	string *str = NULL;
-	str->size = str1->size + str2->size;
-	str->data = (char*) malloc(str->size * sizeof(char));
+	string *s = NULL;
+	s->size = s1->size + s2->size;
+	s->data = (char*) malloc(s->size * sizeof(char));
 
-	memcpy(str->data, str1->data, str1->size);
-	memcpy(str->data + str1->size, str2->data, str2->size);
+	memcpy(s->data, s1->data, s1->size);
+	memcpy(s->data + s1->size, s2->data, s2->size);
 
-	return str;
+	return s;
 }
 
-bool string_compare(const string *str1, const string *str2)
+bool string_compare(const string *s1, const string *s2)
 {
-	return strcmp(str1->data, str2->data) == 0;
+	return strcmp(s1->data, s2->data) == 0;
 }
 
 void string_copy(string *dst, const string *src)
@@ -69,33 +65,33 @@ void string_copy(string *dst, const string *src)
 	memcpy(dst->data, src->data, src->size);
 }
 
-size_t string_length(const string *str)
+size_t string_length(const string *s)
 {
-	return str->size;
+	return s->size;
 }
 
-string*	string_substring(const string *src, size_t pos, size_t count)
+string*	string_substring(const string *s, size_t pos, size_t count)
 {
-	if (pos + count >= src->size) return NULL;
+	if (pos + count >= s->size) return NULL;
 
-	string *str = NULL;
-	str->size = count + 1;
-	str->data = (char*) malloc(str->size * sizeof(char));
+	string *ss = NULL;
+	ss->size = count + 1;
+	ss->data = (char*) malloc(ss->size * sizeof(char));
 
-	memcpy(str->data, src->data + pos, count);
-	str->data[str->size] = '\0';
-	return str;
+	memcpy(ss->data, s->data + pos, count);
+	ss->data[ss->size] = '\0';
+	return ss;
 }
 
-size_t string_find(const string *str, const string* target)
+size_t string_find(const string *s, const string* target)
 {
-	char* pos = strstr(str->data, target->data);
+	char* pos = strstr(s->data, target->data);
 
-	if (pos == NULL) return str->size;
-	return pos - str->data;
+	if (pos == NULL) return s->size;
+	return pos - s->data;
 }
 
-void string_print(const string *str)
+void string_print(const string *s)
 {
-	printf("%s", str->data);
+	printf("%s", s->data);
 }
