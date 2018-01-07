@@ -3,11 +3,16 @@
 #include <stdlib.h>
 #include <string.h>
 
-void tuple_init(tuple *t, void** data, int size)
+void tuple_init(tuple *t, void** data, size_t size)
 {
 	t->size = size;
 	t->data = malloc(sizeof(void*) * size);
 	memcpy(t->data, data, sizeof(void*) * size);
+}
+
+void tuple_free(tuple *t)
+{
+	free(t->data);
 }
 
 void tuple_set(tuple *t, int index, void *item)
@@ -37,9 +42,4 @@ void tuple_erase(tuple *t, int index)
 	if (index >= t->size) return;
 
 	t->data[index] = NULL;
-}
-
-void tuple_free(tuple *t)
-{
-	free(t->data);
 }

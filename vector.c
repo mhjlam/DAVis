@@ -8,10 +8,13 @@ void vector_init(vector *v)
 	v->data = NULL;
 }
 
-static void vector_resize(vector *v, int capacity)
+void vector_free(vector *v)
 {
-	if (capacity < 0) return;
+	free(v->data);
+}
 
+static void vector_resize(vector *v, size_t capacity)
+{
 	void **data = realloc(v->data, sizeof(void*) * capacity);
 	if (!data) return;
 	
@@ -84,9 +87,4 @@ void vector_erase(vector *v, int index)
 	{
 		vector_resize(v, v->capacity / 2);
 	}
-}
-
-void vector_free(vector *v)
-{
-	free(v->data);
 }

@@ -21,7 +21,7 @@ void tuple_test()
 
     for (int i = 0; i < t.size; i++)
     {
-    	printf("%d ", (uintptr_t) tuple_get(&t, i));
+    	printf("%lu ", (uintptr_t) tuple_get(&t, i));
     }
     printf("\n");
 
@@ -56,7 +56,7 @@ void vector_test()
 
     for (int i = 0; i < v.size; i++)
     {
-    	printf("%s ", (char *) vector_get(&v, i));
+    	printf("%s ", (char*) vector_get(&v, i));
     }
     printf("\n");
 
@@ -67,7 +67,7 @@ void vector_test()
 int main(int argc, char *argv[])
 {
 	tuple_test();
-	//vector_test();
+	vector_test();
 
 	return 0;
 }
