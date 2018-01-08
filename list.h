@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stddef.h>
+#include <stdbool.h>
 
 typedef struct node
 {
@@ -21,9 +22,9 @@ extern void  list_free(list*);
 
 extern node* list_get(list*, size_t);
 extern node* list_find(list*, void*);
-extern void  list_insert(node*, void*); // insert before node
+extern bool  list_locate(list*, node*); // is node in list
+extern void  list_insert(list*, node*, void*); // insert before node
 extern void  list_remove(list*, node*);
-extern void  list_remove_value(list*, void*);
 
 extern void  list_push_back(list*, void*);
 extern void  list_pop_back(list*);
