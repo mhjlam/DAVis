@@ -1,16 +1,19 @@
 #include "vector.h"
 #include <stdlib.h>
 
-void vector_init(vector *v)
+vector *vector_new()
 {
+	vector *v = malloc(sizeof(struct vector));
 	v->size = 0;
 	v->capacity = 0;
 	v->data = NULL;
+	return v;
 }
 
 void vector_free(vector *v)
 {
 	free(v->data);
+	free(v);
 }
 
 static void vector_resize(vector *v, size_t capacity)

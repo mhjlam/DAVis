@@ -1,11 +1,13 @@
 #include "list.h"
 #include <stdlib.h>
 
-void list_init(list *l)
+list *list_new()
 {
+	list *l = malloc(sizeof(struct list));
 	l->size = 0;
 	l->front = NULL;
 	l->back = NULL;
+	return l;
 }
 
 void list_free(list *l)
@@ -19,6 +21,8 @@ void list_free(list *l)
 		list_remove(l, n);
 		n = n->next;
 	}
+
+	free(l);
 }
 
 node* list_get(list *l, size_t index)

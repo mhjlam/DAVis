@@ -3,16 +3,19 @@
 #include <stdlib.h>
 #include <string.h>
 
-void tuple_init(tuple *t, void** data, size_t size)
+tuple *tuple_new(void **data, size_t size)
 {
+	tuple *t = malloc(sizeof(struct tuple));
 	t->size = size;
 	t->data = malloc(sizeof(void*) * size);
 	memcpy(t->data, data, sizeof(void*) * size);
+	return t;
 }
 
 void tuple_free(tuple *t)
 {
 	free(t->data);
+	free(t);
 }
 
 void tuple_set(tuple *t, int index, void *item)
