@@ -7,6 +7,8 @@
 #include "vector.h"
 #include "string.h"
 #include "list.h"
+#include "queue.h"
+#include "stack.h"
 
 void tuple_test()
 {
@@ -97,46 +99,71 @@ void list_test()
 {
     printf("\n~~~ list ~~~\n");
 
-    list *li = list_new();
+    list *l = list_new();
 
     printf("push back & front:\n");
-    list_push_back(li,  (void*)6);
-    list_push_front(li, (void*)5);
-    list_push_back(li,  (void*)7);
-    list_push_front(li, (void*)3);
-    list_push_front(li, (void*)2);
-    list_push_front(li, (void*)1);
-    list_push_back(li, (void*)8);
-    list_print_i(li);
+    list_push_back(l,  (void*)6);
+    list_push_front(l, (void*)5);
+    list_push_back(l,  (void*)7);
+    list_push_front(l, (void*)3);
+    list_push_front(l, (void*)2);
+    list_push_front(l, (void*)1);
+    list_push_back(l, (void*)8);
+    list_print_i(l);
 
     printf("\npop back, front, back:\n");
-    list_pop_back(li);
-    list_pop_front(li);
-    list_pop_back(li);
-    list_print_i(li);
+    list_pop_back(l);
+    list_pop_front(l);
+    list_pop_back(l);
+    list_print_i(l);
 
     printf("\nfind node with value 5 and insert 4 before:\n");
-    list_insert(li, list_find(li, (void*)5), (void*)4);
-    list_print_i(li);
+    list_insert(l, list_find(l, (void*)5), (void*)4);
+    list_print_i(l);
 
     printf("\nget and then remove second element:\n");
-    node *n = list_get(li, 1);
+    node *n = list_get(l, 1);
     printf("list(1) = %li\n", (n) ? (intptr_t)n->data : -1);
-    list_remove(li, n);
-    list_print_i(li);
+    list_remove(l, n);
+    list_print_i(l);
 
-    list_free(li);
+    list_free(l);
+}
+
+void queue_test()
+{
+    printf("\n~~~ queue ~~~\n");
+
+    queue *q = queue_new();
+    queue_enqueue(q, (void*)1);
+    queue_enqueue(q, (void*)2);
+    queue_enqueue(q, (void*)3);
+    queue_print_i(q);
+
+    queue_free(q);
+}
+
+void stack_test()
+{
+    printf("\n~~~ stack ~~~\n");
+
+    stack *s = stack_new();
+    stack_push(s, (void*)1);
+    stack_push(s, (void*)2);
+    stack_push(s, (void*)3);
+    stack_print_i(s);
+
+    stack_free(s);
 }
 
 int main(int argc, char *argv[])
 {
-    // disable stdout buffering
-    setbuf(stdout, NULL);
-
 	tuple_test();
 	vector_test();
     string_test();
     list_test();
+    queue_test();
+    stack_test();
 
 	return 0;
 }
