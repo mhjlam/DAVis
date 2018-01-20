@@ -11,16 +11,15 @@ Visualizer for data structures and algorithms in C.
 - Queue (FIFO)
 - Stack (LIFO)
 - Map (hash table)
+- Heap (binary tree)
 - Set (red-black tree)
-- Heap (priority queue)
 - Binary search tree
 
 ## Algorithms
 
-- Heapsort
-- Mergesort
-- Quicksort
-- Introsort
+- Searching
+- Tree traversal
+- Sorting (heapsort, mergesort, quicksort, introsort)
 
 ## Visualization
 
