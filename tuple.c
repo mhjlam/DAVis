@@ -46,3 +46,31 @@ void tuple_erase(tuple *t, int index)
 
 	t->data[index] = NULL;
 }
+
+void tuple_print(tuple *t)
+{
+	if (t == NULL) return;
+
+	if (t->size == 0)
+	{
+		printf("{ }\n");
+	}
+	else if (t->size == 1)
+	{
+		printf("{ %s }\n", t->data[0]);
+	}
+	else
+	{
+		printf("{ %s", (char*)t->data[0]);
+		for (int i = 1; i < t->size; ++i)
+		{
+			printf(", %s", t->data[i]);
+		}
+		printf(" }\n");
+	}
+}
+
+const char* tuple_format(tuple *t)
+{
+	return "";
+}

@@ -91,3 +91,15 @@ void vector_erase(vector *v, int index)
 		vector_resize(v, v->capacity / 2);
 	}
 }
+
+void vector_print(vector *v)
+{
+
+}
+
+const char *vector_format(vector *v)
+{
+	//char *str = malloc(v->size * sizeof(char));
+	//memcpy(str, v->data);
+	return "";
+}

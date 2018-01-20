@@ -13,7 +13,7 @@ string *string_new(const char *data)
 	return s;
 }
 
-string *string_init()
+string *string_new_empty()
 {
 	string *s = malloc(sizeof(struct string));
 	s->size = 0;
@@ -34,11 +34,6 @@ void string_set(string* s, const char *data)
 	s->data = realloc(s->data, (s->size + 1) * sizeof(char));
 	memcpy(s->data, data, s->size);
 	s->data[s->size] = '\0';
-}
-
-const char *string_get(const string *s)
-{
-	return s->data;
 }
 
 void string_append(string *dst, const char *s)
@@ -136,4 +131,9 @@ size_t string_find_string(const string *s, const string* target)
 void string_print(const string *s)
 {
 	printf("%s\n", s->data);
+}
+
+const char *string_format(const string *s)
+{
+	return s->data;
 }
