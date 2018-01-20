@@ -6,6 +6,7 @@ Visualizer for data structures and algorithms in C.
 
 - Tuple (static array)
 - Vector (dynamic array)
+- String (dynamic character array)
 - List (single, double)
 - Queue (FIFO)
 - Stack (LIFO)
