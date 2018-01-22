@@ -1,6 +1,7 @@
 #include "queue.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 queue* queue_new()
 {
@@ -78,14 +79,52 @@ void queue_print_i(queue *q) // todo: queue must be printed in reversed order
     }
     else
     {
-        printf("queue = { %li", (intptr_t)q->front->data);
+        // allocate memory buffer with prefix
+        char *strbuf = malloc(10 * sizeof(char));
+        strcpy(strbuf, "queue = { ");
+
+        // first node: get value and its length
+        char temp[10];
+        sprintf(temp, "%li", (intptr_t)q->front->data);
+
+        // allocate buffer for integers
+        char *content = malloc(strlen(temp) * sizeof(char));
+
+        // add value to contents buffer
+        strcpy(content, temp);
+
         struct queue_node *current = q->front->next;
+
+        // for each node:
         while (current)
         {
-            printf(", %li", (intptr_t)current->data);
+            // allocate buffer for integer
+            sprintf(temp, " ,%li", (intptr_t)current->data);
+            content = realloc(content, strlen(content) + strlen(temp));
+
+            // add value to contents buffer
+            strcpy(content + strlen(content), temp);
+
             current = current->next;
         }
-        printf(" }\n");
+
+        // reverse content string
+        int n = strlen(content);
+        for (int i = 0; i < n/2; i++)
+        {
+            char t = content[n-i-1];
+            content[n-i-1] = content[i];
+            content[i] = t;
+        }
+
+        // append suffix
+        strbuf = realloc(strbuf, 10 + strlen(content) + 2);
+        strcpy(strbuf + 10, content);
+        sprintf(temp, " }");
+        strcpy(strbuf + strlen(strbuf), temp);
+
+        // print final string
+        printf("%s\n", strbuf);
     }
 }
 
