@@ -79,34 +79,34 @@ void queue_print_i(queue *q) // todo: queue must be printed in reversed order
     }
     else
     {
-        char temp[12];
+        char tmp[12];
 
         // print affix
         printf("queue = { ");
 
-        // allocate string buffer and add first value
-        char *content = malloc(12 * q->size * sizeof(char));
-        int len = sprintf(temp, "%li", (intptr_t)q->front->data);
-        strncpy(content, temp, len);
+        // allocate string buffer for integer sequence and add first value
+        char *seq = malloc(12 * q->size * sizeof(char));
+        int len = sprintf(tmp, "%li", (intptr_t)q->front->data);
+        strncpy(seq, tmp, len);
 
         // for each node:
         struct queue_node *current = q->front->next;
         while (current)
         {
-            // add current node value to string buffer
-            int l = sprintf(temp, " ,%li", (intptr_t)current->data);
-            strncpy(content + len, temp, l);
+            // add current node value to sequence
+            int l = sprintf(tmp, " ,%li", (intptr_t)current->data);
+            strncpy(seq + len, tmp, l);
             len += l;
 
             current = current->next;
         }
 
-        // contract string buffer to free unused memory
-        content = realloc(content, len * sizeof(char));
+        // contract sequence buffer to free unused memory
+        seq = realloc(seq, len * sizeof(char));
 
-        // print contents in reverse order
+        // print sequence in reverse order
         for (int i = len-1; i >= 0; --i)
-            printf("%c", content[i]);
+            printf("%c", seq[i]);
 
         // print suffix
         printf(" }\n");
