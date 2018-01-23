@@ -79,52 +79,37 @@ void queue_print_i(queue *q) // todo: queue must be printed in reversed order
     }
     else
     {
-        // allocate memory buffer with prefix
-        char *strbuf = malloc(10 * sizeof(char));
-        strcpy(strbuf, "queue = { ");
+        char temp[12];
 
-        // first node: get value and its length
-        char temp[10];
-        sprintf(temp, "%li", (intptr_t)q->front->data);
+        // print affix
+        printf("queue = { ");
 
-        // allocate buffer for integers
-        char *content = malloc(strlen(temp) * sizeof(char));
-
-        // add value to contents buffer
-        strcpy(content, temp);
-
-        struct queue_node *current = q->front->next;
+        // allocate string buffer and add first value
+        char *content = malloc(12 * q->size * sizeof(char));
+        int len = sprintf(temp, "%li", (intptr_t)q->front->data);
+        strncpy(content, temp, len);
 
         // for each node:
+        struct queue_node *current = q->front->next;
         while (current)
         {
-            // allocate buffer for integer
-            sprintf(temp, " ,%li", (intptr_t)current->data);
-            content = realloc(content, strlen(content) + strlen(temp));
-
-            // add value to contents buffer
-            strcpy(content + strlen(content), temp);
+            // add current node value to string buffer
+            int l = sprintf(temp, " ,%li", (intptr_t)current->data);
+            strncpy(content + len, temp, l);
+            len += l;
 
             current = current->next;
         }
 
-        // reverse content string
-        int n = strlen(content);
-        for (int i = 0; i < n/2; i++)
-        {
-            char t = content[n-i-1];
-            content[n-i-1] = content[i];
-            content[i] = t;
-        }
+        // contract string buffer to free unused memory
+        content = realloc(content, len * sizeof(char));
 
-        // append suffix
-        strbuf = realloc(strbuf, 10 + strlen(content) + 2);
-        strcpy(strbuf + 10, content);
-        sprintf(temp, " }");
-        strcpy(strbuf + strlen(strbuf), temp);
+        // print contents in reverse order
+        for (int i = len-1; i >= 0; --i)
+            printf("%c", content[i]);
 
-        // print final string
-        printf("%s\n", strbuf);
+        // print suffix
+        printf(" }\n");
     }
 }
 
