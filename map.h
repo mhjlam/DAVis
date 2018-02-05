@@ -6,7 +6,7 @@ typedef struct pair
 {
     char        *key;
     void        *value;
-	struct pair *next;
+    struct pair *next;
 } pair;
 
 typedef struct bucket
@@ -17,8 +17,8 @@ typedef struct bucket
 
 typedef struct map
 {
-	size_t  size;
-	bucket *buckets;
+    size_t  size;
+    bucket *buckets;
 } map;
 
 extern map*     map_new();
