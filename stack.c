@@ -1,4 +1,5 @@
 #include "stack.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -60,7 +61,7 @@ void* stack_pop(stack *s)
 void stack_print_i(stack *s)
 {
     if (s == NULL) return;
-    
+
     if (s->top == NULL)
     {
         printf("stack is empty\n");

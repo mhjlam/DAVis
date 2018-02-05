@@ -4,12 +4,12 @@ Visualizer for data structures and algorithms in C.
 
 ## Data structures
 
-- Tuple (static array)
-- Vector (dynamic array)
-- String (dynamic character array)
-- List (single, double)
-- Queue (FIFO)
-- Stack (LIFO)
+- Tuple (static array) ✓
+- Vector (dynamic array) ✓
+- String (dynamic character array) ✓
+- List (single, double) ✓
+- Queue (FIFO) ✓
+- Stack (LIFO) ✓
 - Map (hash table)
 - Heap (binary tree)
 - Set (red-black tree)
@@ -25,7 +25,7 @@ Visualizer for data structures and algorithms in C.
 
 - Lines
 - Rectangles
-- Circles / elipses
+- Circles / ellipses
 - Plots (scatterplot, function plot)
 - Grids (matrix)
 - Charts (bar chart, histogram)

@@ -20,7 +20,7 @@ static void vector_resize(vector *v, size_t capacity)
 {
 	void **data = realloc(v->data, sizeof(void*) * capacity);
 	if (!data) return;
-	
+
 	v->data = data;
 	v->capacity = capacity;
 }
@@ -49,7 +49,7 @@ void vector_pop(vector *v)
 	}
 }
 
-void vector_set(vector *v, int index, void *item)
+void vector_set(vector *v, size_t index, void *item)
 {
 	if (v == NULL) return;
 	if (index < 0) return;
@@ -59,7 +59,7 @@ void vector_set(vector *v, int index, void *item)
 	v->data[index] = item;
 }
 
-void *vector_get(vector *v, int index)
+void *vector_get(vector *v, size_t index)
 {
 	if (v == NULL) return NULL;
 	if (index < 0) return NULL;
@@ -69,7 +69,7 @@ void *vector_get(vector *v, int index)
 	return v->data[index];
 }
 
-void vector_erase(vector *v, int index)
+void vector_erase(vector *v, size_t index)
 {
 	if (index < 0) return;
 	if (v->size == 0) return;
@@ -80,7 +80,7 @@ void vector_erase(vector *v, int index)
 	v->data[index] = NULL;
 
 	// shift remaining elements
-	for (int i = index; i < v->size - 1; ++i)
+	for (size_t i = index; i < v->size - 1; ++i)
 	{
 		v->data[i] = v->data[i + 1];
 		v->data[i + 1] = NULL;

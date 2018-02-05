@@ -116,7 +116,7 @@ void list_push_back(list *l, void *value)
 		l->tail->next = n;
 	}
 
-	l->tail = n;	
+	l->tail = n;
 	l->size++;
 
 	if (l->head == NULL) l->head = n;
@@ -193,50 +193,50 @@ void list_print_s(list *l)
     }
 }
 
-void list_format_i(list *l, char **format)
+void list_format_i(list *l, char **fmt)
 {
-	*format = calloc(2 + 10 * l->size + 3, sizeof(char));
-	strcat(*format, "{ ");
+	*fmt = calloc(2 + 10 * l->size + 3, sizeof(char));
+	strcat(*fmt, "{ ");
 
 	if (l->size > 0)
     {
     	char d[10];
     	sprintf(d, "%li", (intptr_t)l->head->data);
-    	strcat(*format, d);
+    	strcat(*fmt, d);
 
         struct node *n = l->head->next;
         while (n)
         {
         	char d[10];
         	sprintf(d, ", %li", (intptr_t)n->data);
-        	strcat(*format, d);
+        	strcat(*fmt, d);
             n = n->next;
         }
     }
 
- 	strcat(*format, " }");
+ 	strcat(*fmt, " }");
 }
 
-void list_format_s(list *l, char **format)
+void list_format_s(list *l, char **fmt)
 {
-	*format = calloc(2 + 64 * l->size + 3, sizeof(char));
-	strcat(*format, "{ ");
+	*fmt = calloc(2 + 64 * l->size + 3, sizeof(char));
+	strcat(*fmt, "{ ");
 
 	if (l->size > 0)
     {
     	char d[64];
     	sprintf(d, "%s", (char*)l->head->data);
-    	strcat(*format, d);
+    	strcat(*fmt, d);
 
         struct node *n = l->head->next;
         while (n)
         {
         	char d[64];
         	sprintf(d, ", %s", (char*)n->data);
-        	strcat(*format, d);
+        	strcat(*fmt, d);
             n = n->next;
         }
     }
 
- 	strcat(*format, " }");
+ 	strcat(*fmt, " }");
 }

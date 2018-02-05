@@ -21,9 +21,9 @@ void tuple_test()
     tuple_erase(t, 3);          // 4 becomes 0
                                 // t = { 1, 0, 1, 0 }
 
-    for (int i = 0; i < t->size; i++)
+    for (size_t i = 0; i < t->size; i++)
     {
-    	printf("%lu ", (uintptr_t)tuple_get(t, i));
+    	printf("%llu ", (uintptr_t)tuple_get(t, i));
     }
     printf("\n");
 
@@ -123,7 +123,7 @@ void list_test()
 
     printf("\nget and then remove second element:\n");
     node *n = list_get(l, 1);
-    printf("list(1) = %li\n", (n) ? (intptr_t)n->data : -1);
+    printf("list(1) = %lli\n", (n) ? (intptr_t)n->data : -1);
     list_remove(l, n);
     list_print_i(l);
 
