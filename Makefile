@@ -1,2 +1,2 @@
 all:
-	gcc *.c -o ./bin/davis
+	gcc src/*.c -o bin/davis
