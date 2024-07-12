@@ -1,4 +1,4 @@
-# davis: Data and Algorithm Visualizer
+# DAVis: Data and Algorithm Visualizer
 
 Visualizer for data structures and algorithms in C.
 
